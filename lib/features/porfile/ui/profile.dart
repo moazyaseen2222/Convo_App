@@ -52,7 +52,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   // Profile Image
                   Center(
                     child: CircleAvatar(
-                      radius: 80,
+                      radius: 80.r,
                       backgroundImage: NetworkImage(
                         context.read<ProfileCubit>().imageUrl ??
                             'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTWpna26opFqFZ4n37v71IOXad4lk53w7o9KPqWF2JHrCfCG0Ft&s',
