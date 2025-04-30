@@ -1,0 +1,7 @@
+ TODO : 
+ 1- Edit profile feature .
+ 2- Show user image in home screen.
+ 3- create new chat .
+ 4- chating feature.
+ 5- Some UI edits.
+ 
