@@ -1,5 +1,6 @@
 import 'package:convo_/core/app_widgets/app_text_form_field.dart';
 import 'package:convo_/core/helpers/app_regex.dart';
+import 'package:convo_/core/theming/app_text_styles.dart';
 import 'package:convo_/features/porfile/logic/cubit/profile_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -16,7 +17,7 @@ class EditDialog extends StatelessWidget {
           context: context,
           builder: (context) {
             return AlertDialog(
-              title: const Text('Edit Profile'),
+              title: Text('Edit Profile', style: AppTextStyles.font13BlackBold),
               content: Column(
                 children: [
                   AppTextFormField(
