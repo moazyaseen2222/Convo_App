@@ -13,6 +13,10 @@ class ProfileCubit extends Cubit<ProfileState> {
   String? status;
   String? imageUrl;
 
+  TextEditingController nameController = TextEditingController();
+  TextEditingController bioController = TextEditingController();
+  TextEditingController statusController = TextEditingController();
+
   final SupabaseClient supabase = Supabase.instance.client;
 
   Future<void> fetchUserData() async {

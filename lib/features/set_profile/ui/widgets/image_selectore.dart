@@ -7,10 +7,10 @@ import '../../../../core/theming/app_colors.dart';
 
 class ImageSelectore extends StatelessWidget {
   const ImageSelectore({
-    Key? key,
+    super.key,
     required this.imageUrl,
     required this.onUpload,
-  }) : super(key: key);
+  });
 
   final String? imageUrl;
   final void Function(String imageUrl) onUpload;

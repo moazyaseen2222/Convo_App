@@ -1,8 +1,6 @@
 import 'package:bloc/bloc.dart';
-import 'package:convo_/features/auth/auth_gate/cubit/auth_gate_cubit.dart';
 import 'package:convo_/features/auth/sign_up/data/repo/sign_up_repo.dart';
 import 'package:flutter/material.dart';
-import 'package:supabase_flutter/supabase_flutter.dart';
 
 part 'sign_up_state.dart';
 

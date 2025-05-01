@@ -1,6 +1,3 @@
-import 'package:convo_/core/helpers/extensions.dart';
-import 'package:convo_/core/routing/routers.dart';
-import 'package:convo_/core/theming/app_colors.dart';
 import 'package:convo_/features/auth/auth_gate/cubit/auth_gate_cubit.dart';
 import 'package:convo_/features/auth/on_boarding_auth/ui/widgets/dont_have_account.dart';
 import 'package:flutter/material.dart';
