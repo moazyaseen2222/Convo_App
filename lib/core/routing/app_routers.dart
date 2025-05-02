@@ -11,7 +11,7 @@ import 'package:convo_/features/auth/sign_up/data/web/sign_up_web_service.dart';
 import 'package:convo_/features/auth/sign_up/logic/cubit/sign_up_cubit.dart';
 import 'package:convo_/features/auth/sign_up/ui/sign_up_screen.dart';
 import 'package:convo_/features/porfile/logic/cubit/profile_cubit.dart';
-import 'package:convo_/features/porfile/ui/profile.dart';
+import 'package:convo_/features/porfile/ui/profile_screen.dart';
 import 'package:convo_/features/set_profile/data/repo/set_info_repo.dart';
 import 'package:convo_/features/set_profile/data/web/set_info_web.dart';
 import 'package:convo_/features/set_profile/logic/cubit/set_profile_cubit.dart';

@@ -5,6 +5,7 @@ import 'package:convo_/core/theming/app_text_styles.dart';
 import 'package:convo_/features/porfile/logic/cubit/profile_cubit.dart';
 import 'package:convo_/features/porfile/ui/widgets/edit_dialog.dart';
 import 'package:convo_/features/porfile/ui/widgets/image_name_bio.dart';
+import 'package:convo_/features/set_profile/logic/cubit/set_profile_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -29,7 +30,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
         backgroundColor: AppColors.mainBlue,
         centerTitle: true,
         title: Text('My Profile', style: AppTextStyles.font20RegularWhite),
-        actions: [EditDialog()],
+        actions: [
+          BlocProvider(
+            create: (context) => ProfileCubit(),
+            child: EditDialog(),
+          ),
+        ],
       ),
       body: Padding(
         padding: const EdgeInsets.all(20.0),
