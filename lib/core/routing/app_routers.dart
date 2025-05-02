@@ -10,7 +10,10 @@ import 'package:convo_/features/auth/sign_up/data/repo/sign_up_repo.dart';
 import 'package:convo_/features/auth/sign_up/data/web/sign_up_web_service.dart';
 import 'package:convo_/features/auth/sign_up/logic/cubit/sign_up_cubit.dart';
 import 'package:convo_/features/auth/sign_up/ui/sign_up_screen.dart';
+import 'package:convo_/features/porfile/data/repo/profile_repo.dart';
+import 'package:convo_/features/porfile/data/web/profile_web.dart';
 import 'package:convo_/features/porfile/logic/cubit/profile_cubit.dart';
+import 'package:convo_/features/porfile/ui/edit_profile_screen.dart';
 import 'package:convo_/features/porfile/ui/profile_screen.dart';
 import 'package:convo_/features/set_profile/data/repo/set_info_repo.dart';
 import 'package:convo_/features/set_profile/data/web/set_info_web.dart';
@@ -35,6 +38,10 @@ class AppRouters {
   late SetInfoRepo setInfoRepo;
   late SetInfoCubit setInfoCubit;
 
+  // Update Profile
+  late ProfileRepo updateInfoRepo;
+  late ProfileCubit updateInfoCubit;
+
   AppRouters() {
     // Sign in
     loginRepo = LoginRepo(LoginWebService());
@@ -47,6 +54,10 @@ class AppRouters {
     // Set Info
     setInfoRepo = SetInfoRepo(SetInfoWeb());
     setInfoCubit = SetInfoCubit(setInfoRepo);
+
+    // Update Info
+    updateInfoRepo = ProfileRepo(ProfileWeb());
+    updateInfoCubit = ProfileCubit(updateInfoRepo);
   }
 
   Route? generateRoute(RouteSettings settings) {
@@ -109,8 +120,17 @@ class AppRouters {
         return MaterialPageRoute(
           builder:
               (_) => BlocProvider(
-                create: (context) => ProfileCubit(),
+                create: (context) => ProfileCubit(updateInfoRepo),
                 child: const ProfileScreen(),
+              ),
+        );
+
+      case Routes.editProfileScreen:
+        return MaterialPageRoute(
+          builder:
+              (_) => BlocProvider(
+                create: (context) => ProfileCubit(updateInfoRepo),
+                child: const EditProfileScreen(),
               ),
         );
 

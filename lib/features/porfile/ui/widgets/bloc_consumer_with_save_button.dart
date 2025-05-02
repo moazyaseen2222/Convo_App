@@ -1,21 +1,20 @@
 import 'package:convo_/core/helpers/extensions.dart';
 import 'package:convo_/core/theming/app_text_styles.dart';
+import 'package:convo_/features/porfile/logic/cubit/profile_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:hive_ce/hive.dart';
 import '../../../../core/app_widgets/app_button.dart';
 import '../../../../core/routing/routers.dart';
 import '../../../../core/theming/app_colors.dart';
-import '../../logic/cubit/set_profile_cubit.dart';
 
-class BlocConsumerWithCompleteButton extends StatelessWidget {
-  const BlocConsumerWithCompleteButton({super.key});
+class BlocConsumerWithSaveButton extends StatelessWidget {
+  const BlocConsumerWithSaveButton({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<SetInfoCubit, SetProfileState>(
+    return BlocConsumer<ProfileCubit, ProfileState>(
       listener: (context, state) {
-        if (state is SetProfileSuccess) {
+        if (state is ProfileSucess) {
           // Show snack bar
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
@@ -28,7 +27,7 @@ class BlocConsumerWithCompleteButton extends StatelessWidget {
           );
           //Navigate to home
           context.pushReplacementNamed(Routes.homeScreen);
-        } else if (state is SetProfileError) {
+        } else if (state is ProfileError) {
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
               content: Text(
@@ -41,29 +40,21 @@ class BlocConsumerWithCompleteButton extends StatelessWidget {
         }
       },
       builder: (context, state) {
-        if (state is SetProfileLoading) {
+        if (state is ProfileLoading) {
           return const Center(
             child: CircularProgressIndicator(color: AppColors.mainBlue),
           );
         }
 
         return AppButton(
-          title: 'Complete',
+          title: 'Save',
           onPressed: () {
             // Confirm the data
-            context.read<SetInfoCubit>().settingProfile(
-              context.read<SetInfoCubit>().nameController.text,
-              context.read<SetInfoCubit>().bioController.text,
-              context.read<SetInfoCubit>().userStatus,
+            context.read<ProfileCubit>().updateProfile(
+              context.read<ProfileCubit>().nameController.text,
+              context.read<ProfileCubit>().bioController.text,
+              context.read<ProfileCubit>().userStatus,
             );
-            // save to hive :
-            var box = Hive.box('userDataBox');
-            box.put(
-              'userName',
-              context.read<SetInfoCubit>().nameController.text,
-            );
-            box.put('userBio', context.read<SetInfoCubit>().bioController.text);
-            box.put('userStatus', context.read<SetInfoCubit>().userStatus);
           },
         );
       },

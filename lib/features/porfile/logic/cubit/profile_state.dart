@@ -9,8 +9,8 @@ final class ProfileLoading extends ProfileState {}
 
 final class ProfileSucess extends ProfileState {}
 
-final class ProfilError extends ProfileState {
+final class ProfileError extends ProfileState {
   final String message;
 
-  ProfilError(this.message);
+  ProfileError(this.message);
 }

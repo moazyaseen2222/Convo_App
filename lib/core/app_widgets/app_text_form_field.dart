@@ -11,6 +11,7 @@ class AppTextFormField extends StatelessWidget {
     this.isObsecureText,
     this.suffixIconOnTap,
     required this.validator,
+    this.initialValue,
   });
 
   final String? title;
@@ -19,12 +20,14 @@ class AppTextFormField extends StatelessWidget {
   final TextEditingController controller;
   final bool? isObsecureText;
   final VoidCallback? suffixIconOnTap;
+  final String? initialValue;
 
   final Function(String?) validator;
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      initialValue: initialValue,
       autovalidateMode: AutovalidateMode.onUserInteraction,
       obscureText: isObsecureText ?? false,
       controller: controller,

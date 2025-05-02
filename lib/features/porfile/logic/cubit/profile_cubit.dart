@@ -1,11 +1,14 @@
 import 'package:bloc/bloc.dart';
+import 'package:convo_/features/porfile/data/repo/profile_repo.dart';
 import 'package:flutter/material.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 part 'profile_state.dart';
 
 class ProfileCubit extends Cubit<ProfileState> {
-  ProfileCubit() : super(ProfileInitial());
+  ProfileCubit(this._profileRepo) : super(ProfileInitial());
+
+  final ProfileRepo _profileRepo;
 
   String? name;
   String? bio;
@@ -17,6 +20,8 @@ class ProfileCubit extends Cubit<ProfileState> {
   TextEditingController statusController = TextEditingController();
 
   final SupabaseClient supabase = Supabase.instance.client;
+
+  final formKey = GlobalKey<FormState>();
 
   Future<void> fetchUserData() async {
     final userId = supabase.auth.currentUser?.id;
@@ -41,7 +46,21 @@ class ProfileCubit extends Cubit<ProfileState> {
 
       emit(ProfileSucess());
     } catch (e) {
-      emit(ProfilError(e.toString()));
+      emit(ProfileError(e.toString()));
+    }
+  }
+
+  late String userStatus;
+
+  Future<void> updateProfile(String userName, String bio, String status) async {
+    try {
+      await _profileRepo.updateInfo(userName, bio, status);
+      emit(ProfileLoading());
+    } catch (e) {
+      if (e.toString().contains('Failed host lookup')) {
+        emit(ProfileError('No internet connection'));
+      }
+      emit(ProfileError(e.toString()));
     }
   }
 }

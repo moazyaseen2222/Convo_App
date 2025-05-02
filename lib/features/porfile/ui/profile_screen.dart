@@ -1,11 +1,12 @@
 import 'package:convo_/core/app_widgets/app_error.dart';
 import 'package:convo_/core/app_widgets/app_loading.dart';
+import 'package:convo_/core/helpers/extensions.dart';
+import 'package:convo_/core/routing/routers.dart';
 import 'package:convo_/core/theming/app_colors.dart';
 import 'package:convo_/core/theming/app_text_styles.dart';
 import 'package:convo_/features/porfile/logic/cubit/profile_cubit.dart';
 import 'package:convo_/features/porfile/ui/widgets/edit_dialog.dart';
 import 'package:convo_/features/porfile/ui/widgets/image_name_bio.dart';
-import 'package:convo_/features/set_profile/logic/cubit/set_profile_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -31,9 +32,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
         centerTitle: true,
         title: Text('My Profile', style: AppTextStyles.font20RegularWhite),
         actions: [
-          BlocProvider(
-            create: (context) => ProfileCubit(),
-            child: EditDialog(),
+          IconButton(
+            icon: const Icon(Icons.edit, color: Colors.white),
+            onPressed: () {
+              context.pushReplacementNamed(Routes.editProfileScreen);
+            },
           ),
         ],
       ),
@@ -42,13 +45,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
         child: BlocBuilder<ProfileCubit, ProfileState>(
           builder: (context, state) {
             if (state is ProfileLoading) {
-              return AppLoading();
+              return const AppLoading();
             } else if (state is ProfileSucess) {
-              return ImageNameBio();
-            } else if (state is ProfilError) {
+              return const ImageNameBio();
+            } else if (state is ProfileError) {
               return AppError(errorMessage: state.message);
             } else {
-              return AppLoading();
+              return const Center(child: Text('No data available'));
             }
           },
         ),
