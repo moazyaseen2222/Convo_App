@@ -52,7 +52,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
             } else if (state is ProfileError) {
               return AppError(errorMessage: state.message);
             } else {
-              return const Center(child: Text('No data available'));
+              return const Center(child: Text('Somthing went wrong'));
             }
           },
         ),
