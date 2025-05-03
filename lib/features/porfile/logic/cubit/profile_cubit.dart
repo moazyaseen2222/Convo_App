@@ -1,6 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:convo_/features/porfile/data/repo/profile_repo.dart';
 import 'package:flutter/material.dart';
+import 'package:hive_ce/hive.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 part 'profile_state.dart';
@@ -22,6 +23,19 @@ class ProfileCubit extends Cubit<ProfileState> {
   final SupabaseClient supabase = Supabase.instance.client;
 
   final formKey = GlobalKey<FormState>();
+  // fetch user data from hive
+  Future<void> fetchLocalUserData() async {
+    var box = Hive.box('userDataBox');
+    name = box.get('userName');
+    bio = box.get('userBio');
+    status = box.get('userStatus');
+
+    // fetch image from supabase
+    final userId = supabase.auth.currentUser?.id;
+    imageUrl = supabase.storage
+        .from('usersimages')
+        .getPublicUrl('$userId/profile');
+  }
 
   Future<void> fetchUserData() async {
     final userId = supabase.auth.currentUser?.id;

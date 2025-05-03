@@ -1,3 +1,4 @@
+import 'package:convo_/core/helpers/spaces.dart';
 import 'package:convo_/core/theming/app_text_styles.dart';
 import 'package:convo_/features/porfile/logic/cubit/profile_cubit.dart';
 import 'package:flutter/material.dart';
@@ -5,15 +6,21 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hive_ce/hive.dart';
 
-class ImageNameBio extends StatelessWidget {
+class ImageNameBio extends StatefulWidget {
   const ImageNameBio({super.key});
 
   @override
+  State<ImageNameBio> createState() => _ImageNameBioState();
+}
+
+class _ImageNameBioState extends State<ImageNameBio> {
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    var box = Hive.box('userDataBox');
-    final String userName = box.get('userName');
-    final String userBio = box.get('userBio');
-    final String userStatus = box.get('userStatus');
     return Column(
       children: [
         // Profile Image
@@ -26,12 +33,10 @@ class ImageNameBio extends StatelessWidget {
             ),
           ),
         ),
-        const SizedBox(height: 16),
-
+        verticalSpace(16),
         // Name
         Text(
-          userName,
-          //context.read<ProfileCubit>().name ?? 'fucking no name',
+          context.read<ProfileCubit>().name ?? 'fucking no name',
           // 'John Doe',
           style: AppTextStyles.font24ReguralBlue,
           textAlign: TextAlign.center,
@@ -40,8 +45,7 @@ class ImageNameBio extends StatelessWidget {
 
         // Bio
         Text(
-          userBio,
-          //context.read<ProfileCubit>().bio ?? 'fucking no bio',
+          context.read<ProfileCubit>().bio ?? 'fucking no bio',
           // 'Flutter Developer | Coffee Lover ☕',
           textAlign: TextAlign.center,
           style: TextStyle(fontSize: 16, color: Colors.grey),
@@ -61,8 +65,7 @@ class ImageNameBio extends StatelessWidget {
             borderRadius: BorderRadius.circular(20),
           ),
           child: Text(
-            userStatus,
-            // context.read<ProfileCubit>().status ?? 'fucking no status',
+            context.read<ProfileCubit>().status ?? 'fucking no status',
             // 'Online',
             style: TextStyle(color: Colors.white, fontWeight: FontWeight.w500),
           ),

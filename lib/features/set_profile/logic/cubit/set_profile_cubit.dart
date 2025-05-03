@@ -1,6 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:convo_/features/set_profile/data/repo/set_info_repo.dart';
 import 'package:flutter/material.dart';
+import 'package:hive_ce/hive.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 part 'set_profile_state.dart';
@@ -25,6 +26,11 @@ class SetInfoCubit extends Cubit<SetProfileState> {
   ) async {
     try {
       await _setInfoRepo.setInfo(userName, bio, status);
+      // save to hive :
+      var box = Hive.box('userDataBox');
+      box.put('userName', userName);
+      box.put('userBio', bio);
+      box.put('userStatus', status);
       emit(SetProfileSuccess());
     } catch (e) {
       if (e.toString().contains('Failed host lookup')) {

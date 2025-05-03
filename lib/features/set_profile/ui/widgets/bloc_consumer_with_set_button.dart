@@ -56,14 +56,6 @@ class BlocConsumerWithCompleteButton extends StatelessWidget {
               context.read<SetInfoCubit>().bioController.text,
               context.read<SetInfoCubit>().userStatus,
             );
-            // save to hive :
-            var box = Hive.box('userDataBox');
-            box.put(
-              'userName',
-              context.read<SetInfoCubit>().nameController.text,
-            );
-            box.put('userBio', context.read<SetInfoCubit>().bioController.text);
-            box.put('userStatus', context.read<SetInfoCubit>().userStatus);
           },
         );
       },
