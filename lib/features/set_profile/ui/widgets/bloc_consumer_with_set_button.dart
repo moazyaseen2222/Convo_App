@@ -2,7 +2,6 @@ import 'package:convo_/core/helpers/extensions.dart';
 import 'package:convo_/core/theming/app_text_styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:hive_ce/hive.dart';
 import '../../../../core/app_widgets/app_button.dart';
 import '../../../../core/routing/routers.dart';
 import '../../../../core/theming/app_colors.dart';

@@ -1,6 +1,5 @@
 import 'package:convo_/core/helpers/spaces.dart';
 import 'package:convo_/features/porfile/ui/widgets/edit_info_form.dart';
-import 'package:convo_/features/set_profile/ui/widgets/head_bar_row.dart';
 import 'package:convo_/features/set_profile/ui/widgets/image_selectore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';

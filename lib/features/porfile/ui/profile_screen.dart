@@ -5,7 +5,6 @@ import 'package:convo_/core/routing/routers.dart';
 import 'package:convo_/core/theming/app_colors.dart';
 import 'package:convo_/core/theming/app_text_styles.dart';
 import 'package:convo_/features/porfile/logic/cubit/profile_cubit.dart';
-import 'package:convo_/features/porfile/ui/widgets/edit_dialog.dart';
 import 'package:convo_/features/porfile/ui/widgets/image_name_bio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
